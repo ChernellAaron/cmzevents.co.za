@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 
 export default function ContactForm() {
@@ -12,6 +11,7 @@ export default function ContactForm() {
     phone: "",
     message: "",
   })
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -20,31 +20,32 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (process.env.NEXT_PUBLIC_DISABLE_FORM_SUBMISSIONS === "true") {
-      alert("Form submissions are temporarily disabled")
-      setFormData({ name: "", surname: "", email: "", phone: "", message: "" })
-      return
-    }
+    setStatus("submitting")
 
     try {
-      const response = await fetch("/api/contact", {
+      // For a static site, you can use a service like Formspree
+      // Replace YOUR_FORM_ID with your actual form ID from Formspree
+      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          // You can add additional fields here
+          _subject: `New Contact from ${formData.name} ${formData.surname}`,
+        }),
       })
 
       if (response.ok) {
-        alert("Thank you for your message. We will get back to you soon!")
+        setStatus("success")
         setFormData({ name: "", surname: "", email: "", phone: "", message: "" })
       } else {
-        alert("There was an error submitting your message. Please try again.")
+        setStatus("error")
       }
     } catch (error) {
       console.error("Error submitting form:", error)
-      alert("There was an error submitting your message. Please try again.")
+      setStatus("error")
     }
   }
 
@@ -54,6 +55,18 @@ export default function ContactForm() {
       <p className="text-center text-gray-500 mb-6">
         Get in touch with us for your next event. We&apos;re here to help make it unforgettable!
       </p>
+
+      {status === "success" && (
+        <div className="mb-6 p-3 bg-green-50 text-green-700 rounded-md">
+          Thank you for your message. We will get back to you soon!
+        </div>
+      )}
+
+      {status === "error" && (
+        <div className="mb-6 p-3 bg-red-50 text-red-700 rounded-md">
+          There was an error submitting your message. Please try again.
+        </div>
+      )}
 
       <div className="mb-4">
         <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
@@ -137,9 +150,10 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+        disabled={status === "submitting"}
+        className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 disabled:opacity-50"
       >
-        Send Message
+        {status === "submitting" ? "Sending..." : "Send Message"}
       </button>
     </form>
   )

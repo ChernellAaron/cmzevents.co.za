@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 
 const images = [
   "/event2.jpg",
@@ -49,13 +48,11 @@ export default function Slideshow() {
               index === currentImage ? "opacity-100" : "opacity-0"
             }`}
           >
-            <Image
+            <img
               src={src || "/placeholder.svg"}
               alt={`Event ${index + 1}`}
-              fill
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={index === 0}
+              className="w-full h-full object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
             />
           </div>
         ))}

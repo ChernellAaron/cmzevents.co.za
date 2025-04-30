@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import Link from "next/link"
-import Image from "next/image"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +28,7 @@ export default function Header() {
     <header className="bg-white shadow-md">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <Image src="/logo.png" alt="CMZ Events Logo" width={150} height={50} />
+          <img src="/logo.png" alt="CMZ Events Logo" width={150} height={50} />
         </Link>
         <div className="hidden md:flex space-x-4">
           <Link href="/" className="text-gray-700 hover:text-gray-900">

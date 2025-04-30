@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import Slideshow from "@/components/Slideshow"
 
@@ -37,7 +36,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
             <div className="mb-4 h-48 relative rounded-lg overflow-hidden">
-              <Image src="/sound-equipment.jpg" alt="Sound Equipment" fill style={{ objectFit: "cover" }} />
+              <img src="/sound-equipment.jpg" alt="Sound Equipment" className="w-full h-full object-cover" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Sound Equipment</h3>
             <p className="text-gray-600 mb-4">
@@ -50,7 +49,7 @@ export default function Home() {
 
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
             <div className="mb-4 h-48 relative rounded-lg overflow-hidden">
-              <Image src="/DJ-Services.jpg" alt="DJ Services" fill style={{ objectFit: "cover" }} />
+              <img src="/DJ-Services.jpg" alt="DJ Services" className="w-full h-full object-cover" />
             </div>
             <h3 className="text-xl font-semibold mb-2">DJ Services</h3>
             <p className="text-gray-600 mb-4">Experienced DJs with customized playlists to keep your event lively.</p>
@@ -61,7 +60,7 @@ export default function Home() {
 
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
             <div className="mb-4 h-48 relative rounded-lg overflow-hidden">
-              <Image src="/lighting.jpg" alt="Lighting" fill style={{ objectFit: "cover" }} />
+              <img src="/lighting.jpg" alt="Lighting" className="w-full h-full object-cover" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Lighting</h3>
             <p className="text-gray-600 mb-4">Set the perfect mood with our professional lighting solutions.</p>
@@ -72,7 +71,7 @@ export default function Home() {
 
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
             <div className="mb-4 h-48 relative rounded-lg overflow-hidden">
-              <Image src="/microphones.jpg" alt="Microphones" fill style={{ objectFit: "cover" }} />
+              <img src="/microphones.jpg" alt="Microphones" className="w-full h-full object-cover" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Microphones</h3>
             <p className="text-gray-600 mb-4">High-quality microphones for speeches, performances, and conferences.</p>

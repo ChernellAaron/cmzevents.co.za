@@ -1,22 +1,14 @@
-import Image from "next/image"
-
 export default function About() {
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold text-center">About CMZ Events</h1>
 
       <div className="flex flex-col md:flex-row items-center gap-8">
-        <Image
-          src="/Team.jpg"
-          alt="CMZ Events Team"
-          width={400}
-          height={300}
-          className="rounded-lg"
-          priority
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        <div className="w-full md:w-1/2">
+          <img src="/Team.jpg" alt="CMZ Events Team" className="rounded-lg w-full h-auto" />
+        </div>
 
-        <div>
+        <div className="w-full md:w-1/2">
           <p className="mb-4">
             CMZ Events delivers premium event production services designed to electrify weddings, conferences, and
             special occasions. We specialize in high-impact audio-visual experiences - from crystal-clear sound systems
