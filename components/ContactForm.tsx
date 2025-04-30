@@ -23,9 +23,8 @@ export default function ContactForm() {
     setStatus("submitting")
 
     try {
-      // For a static site, you can use a service like Formspree
-      // Replace YOUR_FORM_ID with your actual form ID from Formspree
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      // Using your actual Formspree form ID
+      const response = await fetch("https://formspree.io/f/mvgazddv", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
